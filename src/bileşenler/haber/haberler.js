@@ -115,3 +115,87 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+const haberYapici = (
+  baslik,
+  tarih,
+  ilkParagraf,
+  ikinciParagraf,
+  ucuncuParagraf
+) => {
+  // div oluşturuldu.
+  const articleClass = document.createElement("div");
+  articleClass.className = "article";
+
+  // baslik
+  const haberBaslik = document.createElement("h2");
+  haberBaslik.textContent = baslik;
+  articleClass.append(haberBaslik);
+  // tarih
+  const haberTarih = document.createElement("p");
+  haberTarih.className = "tarih";
+  haberTarih.textContent = tarih;
+  articleClass.append(haberTarih);
+  //haber paragrafları parent class için section (İPTAL EDİLDİ)
+  /*
+  const paragraf = document.createElement("section");
+  paragraf.className = "paragraflar";
+  articleClass.append(paragraf);
+  */
+  //ilkParagraf
+  const paragraf1 = document.createElement("p");
+  paragraf1.textContent = ilkParagraf;
+  articleClass.append(paragraf1);
+  //ikinciParagraf
+  const paragraf2 = document.createElement("p");
+  paragraf2.textContent = ikinciParagraf;
+  articleClass.append(paragraf2);
+  //ucuncuParagraf
+  const paragraf3 = document.createElement("p");
+  paragraf3.textContent = ucuncuParagraf;
+  articleClass.append(paragraf3);
+  //button EventListener
+
+  /*document
+    .querySelector("button.expandButton")
+    .addEventListener("click", function () {
+      document.querySelector(".articles").classList.toggle("article-open");
+    });
+*/
+  const button = document.createElement("button");
+  button.classList.add("expandButton");
+  button.textContent = "+";
+  articleClass.append(button);
+
+  button.addEventListener("click", function () {
+    /*
+    const openbutton = document.querySelector(".article-open");
+    if (openbutton && openbutton != button.parentElement) {
+      openbutton.classList.remove("article-open");
+      console.log(openbutton != button.parentElement);
+    }*/
+    button.parentElement.classList.toggle("article-open");
+    /*document.querySelector("div.articles").classList.toggle("article-open");*/
+    /* articleClass.classList.toggle("article-open");*/
+  });
+
+  return articleClass;
+};
+
+//data için döngü
+/*data.forEach((item) => {
+  document.querySelector(".articles").append(haberYapici(item));
+});
+*/
+
+const anaBaslik = document.querySelector(".articles");
+data.forEach((veriler) => {
+  const bagDegisken = haberYapici(
+    veriler.baslik,
+    veriler.tarih,
+    veriler.ilkParagraf,
+    veriler.ikinciParagraf,
+    veriler.ucuncuParagraf
+  );
+  anaBaslik.append(bagDegisken);
+  /*document.querySelector(".articles").append(haberYapici(bagDegisken));*/
+});

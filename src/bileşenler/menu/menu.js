@@ -8,7 +8,7 @@ let menuElemanlari = [
   "Yazarlar",
   "Burç Yorumları",
   "Diğer",
-];
+]; /*
 
 /*
   Adım 1: Aşağıdaki etiketler gibi bir menü oluşturmak için 'menuYapici' adlı bir bileşen yazın:
@@ -34,3 +34,21 @@ let menuElemanlari = [
 
   Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
+const menuYapici = (items) => {
+  const menu = document.createElement("div");
+  menu.classList.add("menu");
+  const list = document.createElement("ul");
+  menu.append(list);
+  items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    list.append(li);
+  });
+  return menu;
+};
+document
+  .querySelector(".header .menu-button")
+  .addEventListener("click", function () {
+    document.querySelector(".menu").classList.toggle("menu--open");
+  });
+document.querySelector(".header").append(menuYapici(menuElemanlari));
